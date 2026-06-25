@@ -1,0 +1,282 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="openarmx_integrated">
+
+  <!-- ============================================
+       OpenArmX Integrated Robot URDF
+
+       Architecture:
+       chassis (base_link) -> lift_base_link -> lift_carriage_link -> dual arms
+                                                lift_carriage_link -> head
+       ============================================ -->
+
+  <!-- Arguments -->
+  <xacro:arg name="use_fake_hardware" default="false"/>
+  <xacro:arg name="left_arm_can_interface" default="can1"/>
+  <xacro:arg name="right_arm_can_interface" default="can0"/>
+  <xacro:arg name="steering_can_interface" default="can5"/>
+  <xacro:arg name="driving_can_interface" default="can4"/>
+  <xacro:arg name="lift_can_interface" default="can3"/>
+  <xacro:arg name="control_mode" default="mit"/>
+  <xacro:arg name="use_gazebo" default="false"/>
+  <xacro:arg name="use_mock" default="$(arg use_fake_hardware)"/>
+  <xacro:arg name="head_can_interface" default="can2"/>
+  <xacro:arg name="head_can_fd"        default="false"/>
+  <xacro:arg name="head_control_mode"  default="csp"/>
+  <xacro:arg name="enable_head"        default="true"/>
+
+  <!-- ============================================
+       1. CHASSIS SYSTEM
+       Swerve chassis motor/control/model only
+       ============================================ -->
+  <xacro:include filename="$(find swerve_description)/urdf/swerve.urdf.xacro"/>
+
+  <!-- ============================================
+       2. LIFT MECHANISM
+       新版升降柱来自 lift_slide_driver 链路。
+       机械结构与 ros2_control 都由 lift_slide_module.urdf.xacro 提供。
+       ============================================ -->
+  <xacro:include filename="$(find lift_slide_description)/urdf/lift_slide_module.urdf.xacro"/>
+
+  <!-- Connect lift to chassis top -->
+  <joint name="lift_base_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="lift_base_link"/>
+    <origin xyz="-0.033 0 0.07" rpy="0 0 -1.5708"/>
+  </joint>
+
+  <!-- ============================================
+       3. DUAL ARM SYSTEM
+       Direct mounting to lift carriage side bases
+       ============================================ -->
+  <xacro:include filename="$(find openarmx_description)/urdf/arm/openarmx_arm.xacro"/>
+  <xacro:include filename="$(find openarmx_description)/urdf/ee/openarmx_hand_macro.xacro"/>
+  <xacro:include filename="$(find openarmx_description)/urdf/ee/openarmx_hand.xacro"/>
+
+  <xacro:property name="arm_joint_limits" value="${xacro.load_yaml('$(find openarmx_description)/config/arm/v10/joint_limits.yaml')}"/>
+  <xacro:property name="arm_inertials" value="${xacro.load_yaml('$(find openarmx_description)/config/arm/v10/inertials.yaml')}"/>
+  <xacro:property name="arm_kinematics" value="${xacro.load_yaml('$(find openarmx_description)/config/arm/v10/kinematics.yaml')}"/>
+  <xacro:property name="arm_kinematics_link" value="${xacro.load_yaml('$(find openarmx_description)/config/arm/v10/kinematics_link.yaml')}"/>
+  <xacro:property name="arm_kinematics_offset" value="${xacro.load_yaml('$(find openarmx_description)/config/arm/v10/kinematics_offset.yaml')}"/>
+
+  <xacro:property name="hand_inertials" value="${xacro.load_yaml('$(find openarmx_description)/config/hand/openarmx_hand/inertials.yaml')}"/>
+  <xacro:property name="hand_kinematics_link" value="${xacro.load_yaml('$(find openarmx_description)/config/hand/openarmx_hand/kinematics_link.yaml')}"/>
+
+  <xacro:openarmx_arm
+    arm_type="v10"
+    arm_prefix="left_"
+    no_prefix="false"
+    description_pkg="openarmx_description"
+    connected_to="left_link0_base"
+    xyz="0.0 0.0 0.0"
+    rpy="0 0 0"
+    joint_limits="${arm_joint_limits}"
+    inertials="${arm_inertials}"
+    kinematics="${arm_kinematics}"
+    kinematics_link="${arm_kinematics_link}"
+    kinematics_offset="${arm_kinematics_offset}"/>
+
+  <xacro:openarmx_arm
+    arm_type="v10"
+    arm_prefix="right_"
+    no_prefix="false"
+    description_pkg="openarmx_description"
+    connected_to="right_link0_base"
+    xyz="0.0 0.0 0.0"
+    rpy="0 0 0"
+    joint_limits="${arm_joint_limits}"
+    inertials="${arm_inertials}"
+    kinematics="${arm_kinematics}"
+    kinematics_link="${arm_kinematics_link}"
+    kinematics_offset="${arm_kinematics_offset}"/>
+
+  <xacro:openarmx_hand
+    connected_to="openarmx_left_link7"
+    arm_type="v10"
+    arm_prefix="left_"
+    ee_type="openarmx_hand"
+    ee_inertials="${hand_inertials}"
+    ee_kinematics_link="${hand_kinematics_link}"
+    rpy_ee="0 0 0"
+    xyz_ee="0 -0.0 0.1001"
+    tcp_xyz="0 -0.0 0.08"
+    tcp_rpy="0 0 0"
+    description_pkg="openarmx_description"/>
+
+  <xacro:openarmx_hand
+    connected_to="openarmx_right_link7"
+    arm_type="v10"
+    arm_prefix="right_"
+    ee_type="openarmx_hand"
+    ee_inertials="${hand_inertials}"
+    ee_kinematics_link="${hand_kinematics_link}"
+    rpy_ee="0 0 0"
+    xyz_ee="0 -0.0 0.1001"
+    tcp_xyz="0 -0.0 0.08"
+    tcp_rpy="0 0 0"
+    description_pkg="openarmx_description"/>
+
+  <xacro:if value="$(arg enable_head)">
+    <!-- ============================================
+         4. HEAD SYSTEM
+         2-DOF head (pitch + yaw) mounted on lift_carriage_link
+         Joint order: pitch (bottom motor, nod up/down) -> yaw (upper motor, turn left/right)
+         ============================================ -->
+
+    <!-- Head base link (颈部/底座固定部分) -->
+    <link name="head_base_link">
+      <visual>
+        <origin xyz="-0.5630 0.0866 0.0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/TBBJ-04_neck_mount.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_grey"><color rgba="0.5 0.5 0.5 1.0"/></material>
+      </visual>
+      <visual>
+        <origin xyz="-0.5630 0.0866 0.0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/TBBJ-02_neck_bracket.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_grey"><color rgba="0.5 0.5 0.5 1.0"/></material>
+      </visual>
+      <visual>
+        <origin xyz="-0.5630 0.0866 0.0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/TBBJ-06_neck_limit.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_grey"><color rgba="0.5 0.5 0.5 1.0"/></material>
+      </visual>
+      <visual>
+        <origin xyz="-0.5630 0.0866 0.0" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/RS00_motor_2.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_dark_grey"><color rgba="0.2 0.2 0.2 1.0"/></material>
+      </visual>
+    </link>
+
+    <!-- Connect head to lift carriage top -->
+    <joint name="head_base_joint" type="fixed">
+      <parent link="lift_carriage_link"/>
+      <child link="head_base_link"/>
+      <origin xyz="0 0.14 0.1" rpy="0 0 0"/>
+    </joint>
+
+    <!-- Head pitch link (随底部电机旋转：颈部护罩+上部电机+连接件+护板) -->
+    <link name="head_pitch_link">
+      <visual>
+        <origin xyz="-0.5631 0.0798 -0.0395" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/DY-03_neck_cover.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_white"><color rgba="0.9 0.9 0.9 1.0"/></material>
+      </visual>
+      <visual>
+        <origin xyz="-0.5631 0.0798 -0.0395" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/RS00_motor_1.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_dark_grey"><color rgba="0.2 0.2 0.2 1.0"/></material>
+      </visual>
+      <visual>
+        <origin xyz="-0.5631 0.0798 -0.0395" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/TB-01_head_connector.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_grey"><color rgba="0.5 0.5 0.5 1.0"/></material>
+      </visual>
+      <visual>
+        <origin xyz="-0.5631 0.0798 -0.0395" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/TBBJ-03_guard_plate.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_grey"><color rgba="0.5 0.5 0.5 1.0"/></material>
+      </visual>
+    </link>
+
+    <!-- Pitch joint (俯仰/抬头低头, bottom motor RS00-2) -->
+    <joint name="openarmx_head_pitch_joint" type="revolute">
+      <parent link="head_base_link"/>
+      <child link="head_pitch_link"/>
+      <origin xyz="0.0001 0.0068 0.0395" rpy="0 0 0"/>
+      <axis xyz="1 0 0"/>
+      <limit lower="-1.5708" upper="1.5708" velocity="33.0" effort="14.0"/>
+    </joint>
+
+    <!-- Head yaw link (随上部电机旋转：头部外壳+钣金+摄像头) -->
+    <link name="head_yaw_link">
+      <visual>
+        <origin xyz="-0.5631 0.0824 -0.1072" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/TBBJ-01_head_bracket.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_grey"><color rgba="0.5 0.5 0.5 1.0"/></material>
+      </visual>
+      <visual>
+        <origin xyz="-0.5631 0.0824 -0.1072" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/TBBJ-05_head_limit.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_grey"><color rgba="0.5 0.5 0.5 1.0"/></material>
+      </visual>
+      <visual>
+        <origin xyz="-0.5631 0.0824 -0.1072" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/DY-01_head_front_shell.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_white"><color rgba="0.9 0.9 0.9 1.0"/></material>
+      </visual>
+      <visual>
+        <origin xyz="-0.5631 0.0824 -0.1072" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/DY-02_head_rear_shell.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_white"><color rgba="0.9 0.9 0.9 1.0"/></material>
+      </visual>
+      <visual>
+        <origin xyz="-0.5631 0.0824 -0.1072" rpy="${pi/2} 0 0"/>
+        <geometry>
+          <mesh filename="package://openarmx_head_description/meshes/visual/femto_bolt_camera.STL" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <material name="head_black"><color rgba="0.1 0.1 0.1 1.0"/></material>
+      </visual>
+    </link>
+
+    <!-- Yaw joint (偏航/左右摇头, upper motor RS00-1) -->
+    <joint name="openarmx_head_yaw_joint" type="revolute">
+      <parent link="head_pitch_link"/>
+      <child link="head_yaw_link"/>
+      <origin xyz="0.0 -0.0026 0.0677" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-1.5708" upper="1.5708" velocity="33.0" effort="14.0"/>
+    </joint>
+  </xacro:if>
+
+  <!-- ============================================
+       5. ROS2_CONTROL CONFIGURATION
+       Chassis ros2_control comes from swerve.urdf.xacro
+       Lift ros2_control comes from lift_slide_module.urdf.xacro
+       ============================================ -->
+  <xacro:include filename="$(find openarmx_description)/urdf/ros2_control/openarmx.bimanual.ros2_control.xacro"/>
+  <xacro:openarmx_bimanual_ros2_control
+    arm_type="v10"
+    left_can_interface="$(arg left_arm_can_interface)"
+    right_can_interface="$(arg right_arm_can_interface)"
+    use_fake_hardware="$(arg use_fake_hardware)"
+    fake_sensor_commands="false"
+    left_arm_prefix="left_"
+    right_arm_prefix="right_"
+    hand="true"
+    can_fd="false"
+    control_mode="$(arg control_mode)"/>
+
+  <xacro:if value="$(arg enable_head)">
+    <!-- Head ros2_control (can2) -->
+    <xacro:include filename="$(find openarmx_head_description)/urdf/ros2_control/head.ros2_control.xacro"/>
+    <xacro:openarmx_head_ros2_control
+      can_interface="$(arg head_can_interface)"
+      use_fake_hardware="$(arg use_fake_hardware)"
+      can_fd="$(arg head_can_fd)"
+      control_mode="$(arg head_control_mode)"/>
+  </xacro:if>
+
+</robot>

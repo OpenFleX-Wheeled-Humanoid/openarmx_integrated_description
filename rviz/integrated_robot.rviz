@@ -1,0 +1,913 @@
+Panels:
+  - Class: rviz_common/Displays
+    Help Height: 70
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /Global Options1
+      Splitter Ratio: 0.5
+    Tree Height: 371
+  - Class: rviz_common/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: openarmx_head_joint_slider_panel/HeadJointSliderPanel
+    Name: HeadJointSliderPanel
+    joint_step_mrad: 10
+    record_targets: -0.068091094493865967,-0.86715447902679443
+  - Class: openarmx_joint_slider_panel/JointSliderPanel
+    Name: JointSliderPanel
+    gripper_step_tenth_mm: 10
+    joint_step_mrad: 10
+    record_targets: -0.059268023818731308,-0.19545021653175354,0.33009797334671021,1.7563667297363281,-0.30861571431159973,-0.36423942446708679,0.60246235132217407,-0.67918473482131958,0.26795285940170288,-0.076914168894290924,1.7717111110687256,0.10645227879285812,0.21079468727111816,0.37689861655235291,0.0009429113579397443,4.0295358723765163e-05
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.5
+      Cell Size: 1
+      Class: rviz_default_plugins/Grid
+      Color: 160; 160; 164
+      Enabled: true
+      Line Style:
+        Line Width: 0.029999999329447746
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 10
+      Reference Frame: <Fixed Frame>
+      Value: true
+    - Alpha: 1
+      Class: rviz_default_plugins/RobotModel
+      Collision Enabled: false
+      Description File: ""
+      Description Source: Topic
+      Description Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /robot_description
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        bl_steering_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        bl_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        br_steering_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        br_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        camera_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_rgb_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        camera_rgb_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_color_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_color_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_depth_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_depth_optical_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        d435_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fl_steering_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fl_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fr_steering_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        fr_wheel_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        gps_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        head_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        head_pitch_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        head_yaw_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        imu_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_link0_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lift_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        lift_carriage_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        livox_frame:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        mid360_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_hand:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_hand_tcp:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        openarmx_left_left_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_link0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_link1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_link2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_link3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_link4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_link4_ext:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        openarmx_left_link5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_link6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_link7:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_left_link7_pico:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        openarmx_left_right_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_hand:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_hand_tcp:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        openarmx_right_left_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_link0:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_link1:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_link2:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_link3:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_link4:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_link4_ext:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        openarmx_right_link5:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_link6:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_link7:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        openarmx_right_link7_pico:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        openarmx_right_right_finger:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        right_link0_base:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Mass Properties:
+        Inertia: false
+        Mass: false
+      Name: RobotModel
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Class: rviz_default_plugins/TF
+      Enabled: true
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+        aft_mapped:
+          Value: true
+        base_footprint:
+          Value: true
+        base_link:
+          Value: true
+        camera_color_frame:
+          Value: true
+        camera_color_optical_frame:
+          Value: true
+        camera_depth_frame:
+          Value: true
+        camera_depth_optical_frame:
+          Value: true
+        camera_init:
+          Value: true
+        camera_link:
+          Value: true
+        camera_rgb_frame:
+          Value: true
+        camera_rgb_optical_frame:
+          Value: true
+        d435_color_frame:
+          Value: true
+        d435_color_optical_frame:
+          Value: true
+        d435_depth_frame:
+          Value: true
+        d435_depth_optical_frame:
+          Value: true
+        d435_link:
+          Value: true
+        gps_link:
+          Value: true
+        head_base_link:
+          Value: true
+        imu_link:
+          Value: true
+        left_link0_base:
+          Value: true
+        lift_base_link:
+          Value: true
+        lift_carriage_link:
+          Value: true
+        livox_frame:
+          Value: true
+        map:
+          Value: true
+        mid360_link:
+          Value: true
+        odom:
+          Value: true
+        openarmx_left_hand:
+          Value: true
+        openarmx_left_hand_tcp:
+          Value: true
+        openarmx_left_link0:
+          Value: true
+        openarmx_left_link4:
+          Value: true
+        openarmx_left_link4_ext:
+          Value: true
+        openarmx_left_link7:
+          Value: true
+        openarmx_left_link7_pico:
+          Value: true
+        openarmx_right_hand:
+          Value: true
+        openarmx_right_hand_tcp:
+          Value: true
+        openarmx_right_link0:
+          Value: true
+        openarmx_right_link4:
+          Value: true
+        openarmx_right_link4_ext:
+          Value: true
+        openarmx_right_link7:
+          Value: true
+        openarmx_right_link7_pico:
+          Value: true
+        preview_/base_footprint:
+          Value: true
+        preview_/base_link:
+          Value: true
+        preview_/bl_steering_link:
+          Value: true
+        preview_/bl_wheel_link:
+          Value: true
+        preview_/br_steering_link:
+          Value: true
+        preview_/br_wheel_link:
+          Value: true
+        preview_/camera_depth_frame:
+          Value: true
+        preview_/camera_depth_optical_frame:
+          Value: true
+        preview_/camera_link:
+          Value: true
+        preview_/camera_rgb_frame:
+          Value: true
+        preview_/camera_rgb_optical_frame:
+          Value: true
+        preview_/d435_color_frame:
+          Value: true
+        preview_/d435_color_optical_frame:
+          Value: true
+        preview_/d435_depth_frame:
+          Value: true
+        preview_/d435_depth_optical_frame:
+          Value: true
+        preview_/d435_link:
+          Value: true
+        preview_/fl_steering_link:
+          Value: true
+        preview_/fl_wheel_link:
+          Value: true
+        preview_/fr_steering_link:
+          Value: true
+        preview_/fr_wheel_link:
+          Value: true
+        preview_/gps_link:
+          Value: true
+        preview_/head_base_link:
+          Value: true
+        preview_/head_pitch_link:
+          Value: true
+        preview_/head_yaw_link:
+          Value: true
+        preview_/imu_link:
+          Value: true
+        preview_/left_link0_base:
+          Value: true
+        preview_/lift_base_link:
+          Value: true
+        preview_/lift_carriage_link:
+          Value: true
+        preview_/livox_frame:
+          Value: true
+        preview_/mid360_link:
+          Value: true
+        preview_/openarmx_left_hand:
+          Value: true
+        preview_/openarmx_left_hand_tcp:
+          Value: true
+        preview_/openarmx_left_left_finger:
+          Value: true
+        preview_/openarmx_left_link0:
+          Value: true
+        preview_/openarmx_left_link1:
+          Value: true
+        preview_/openarmx_left_link2:
+          Value: true
+        preview_/openarmx_left_link3:
+          Value: true
+        preview_/openarmx_left_link4:
+          Value: true
+        preview_/openarmx_left_link4_ext:
+          Value: true
+        preview_/openarmx_left_link5:
+          Value: true
+        preview_/openarmx_left_link6:
+          Value: true
+        preview_/openarmx_left_link7:
+          Value: true
+        preview_/openarmx_left_link7_pico:
+          Value: true
+        preview_/openarmx_left_right_finger:
+          Value: true
+        preview_/openarmx_right_hand:
+          Value: true
+        preview_/openarmx_right_hand_tcp:
+          Value: true
+        preview_/openarmx_right_left_finger:
+          Value: true
+        preview_/openarmx_right_link0:
+          Value: true
+        preview_/openarmx_right_link1:
+          Value: true
+        preview_/openarmx_right_link2:
+          Value: true
+        preview_/openarmx_right_link3:
+          Value: true
+        preview_/openarmx_right_link4:
+          Value: true
+        preview_/openarmx_right_link4_ext:
+          Value: true
+        preview_/openarmx_right_link5:
+          Value: true
+        preview_/openarmx_right_link6:
+          Value: true
+        preview_/openarmx_right_link7:
+          Value: true
+        preview_/openarmx_right_link7_pico:
+          Value: true
+        preview_/openarmx_right_right_finger:
+          Value: true
+        preview_/right_link0_base:
+          Value: true
+        preview_base_footprint:
+          Value: true
+        preview_base_link:
+          Value: true
+        preview_bl_steering_link:
+          Value: true
+        preview_bl_wheel_link:
+          Value: true
+        preview_br_steering_link:
+          Value: true
+        preview_br_wheel_link:
+          Value: true
+        preview_camera_depth_frame:
+          Value: true
+        preview_camera_depth_optical_frame:
+          Value: true
+        preview_camera_link:
+          Value: true
+        preview_camera_rgb_frame:
+          Value: true
+        preview_camera_rgb_optical_frame:
+          Value: true
+        preview_d435_color_frame:
+          Value: true
+        preview_d435_color_optical_frame:
+          Value: true
+        preview_d435_depth_frame:
+          Value: true
+        preview_d435_depth_optical_frame:
+          Value: true
+        preview_d435_link:
+          Value: true
+        preview_fl_steering_link:
+          Value: true
+        preview_fl_wheel_link:
+          Value: true
+        preview_fr_steering_link:
+          Value: true
+        preview_fr_wheel_link:
+          Value: true
+        preview_gps_link:
+          Value: true
+        preview_head_base_link:
+          Value: true
+        preview_head_pitch_link:
+          Value: true
+        preview_head_yaw_link:
+          Value: true
+        preview_imu_link:
+          Value: true
+        preview_left_link0_base:
+          Value: true
+        preview_lift_base_link:
+          Value: true
+        preview_lift_carriage_link:
+          Value: true
+        preview_livox_frame:
+          Value: true
+        preview_mid360_link:
+          Value: true
+        preview_openarmx_left_hand:
+          Value: true
+        preview_openarmx_left_hand_tcp:
+          Value: true
+        preview_openarmx_left_left_finger:
+          Value: true
+        preview_openarmx_left_link0:
+          Value: true
+        preview_openarmx_left_link1:
+          Value: true
+        preview_openarmx_left_link2:
+          Value: true
+        preview_openarmx_left_link3:
+          Value: true
+        preview_openarmx_left_link4:
+          Value: true
+        preview_openarmx_left_link4_ext:
+          Value: true
+        preview_openarmx_left_link5:
+          Value: true
+        preview_openarmx_left_link6:
+          Value: true
+        preview_openarmx_left_link7:
+          Value: true
+        preview_openarmx_left_link7_pico:
+          Value: true
+        preview_openarmx_left_right_finger:
+          Value: true
+        preview_openarmx_right_hand:
+          Value: true
+        preview_openarmx_right_hand_tcp:
+          Value: true
+        preview_openarmx_right_left_finger:
+          Value: true
+        preview_openarmx_right_link0:
+          Value: true
+        preview_openarmx_right_link1:
+          Value: true
+        preview_openarmx_right_link2:
+          Value: true
+        preview_openarmx_right_link3:
+          Value: true
+        preview_openarmx_right_link4:
+          Value: true
+        preview_openarmx_right_link4_ext:
+          Value: true
+        preview_openarmx_right_link5:
+          Value: true
+        preview_openarmx_right_link6:
+          Value: true
+        preview_openarmx_right_link7:
+          Value: true
+        preview_openarmx_right_link7_pico:
+          Value: true
+        preview_openarmx_right_right_finger:
+          Value: true
+        preview_right_link0_base:
+          Value: true
+        right_link0_base:
+          Value: true
+        world:
+          Value: true
+      Marker Scale: 0.30000001192092896
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        map:
+          odom:
+            base_link:
+              base_footprint:
+                {}
+              d435_link:
+                camera_link:
+                  camera_color_frame:
+                    camera_color_optical_frame:
+                      {}
+                  camera_depth_frame:
+                    camera_depth_optical_frame:
+                      {}
+                  camera_rgb_frame:
+                    camera_rgb_optical_frame:
+                      {}
+                d435_color_frame:
+                  d435_color_optical_frame:
+                    {}
+                d435_depth_frame:
+                  d435_depth_optical_frame:
+                    {}
+              gps_link:
+                {}
+              lift_base_link:
+                {}
+              mid360_link:
+                imu_link:
+                  {}
+                livox_frame:
+                  {}
+      Update Interval: 0
+      Value: true
+    - Class: rviz_default_plugins/MarkerArray
+      Enabled: true
+      Name: SceneMarkers
+      Namespaces:
+        {}
+      Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /scene_markers
+      Value: true
+    - Class: rviz_common/Group
+      Displays:
+        - Class: rviz_default_plugins/Image
+          Enabled: false
+          Max Value: 1
+          Median window: 5
+          Min Value: 0
+          Name: LeftWrist
+          Normalize Range: true
+          Topic:
+            Depth: 5
+            Durability Policy: Volatile
+            History Policy: Keep Last
+            Reliability Policy: Reliable
+            Value: /cam_left/color/image
+          Value: false
+        - Class: rviz_default_plugins/Image
+          Enabled: false
+          Max Value: 1
+          Median window: 5
+          Min Value: 0
+          Name: RightWrist
+          Normalize Range: true
+          Topic:
+            Depth: 5
+            Durability Policy: Volatile
+            History Policy: Keep Last
+            Reliability Policy: Reliable
+            Value: /cam_right/color/image
+          Value: false
+        - Class: rviz_default_plugins/Image
+          Enabled: false
+          Max Value: 1
+          Median window: 5
+          Min Value: 0
+          Name: Head
+          Normalize Range: true
+          Topic:
+            Depth: 5
+            Durability Policy: Volatile
+            History Policy: Keep Last
+            Reliability Policy: Reliable
+            Value: /cam_head/color/image
+          Value: false
+        - Class: rviz_default_plugins/Image
+          Enabled: false
+          Max Value: 1
+          Median window: 5
+          Min Value: 0
+          Name: Base
+          Normalize Range: true
+          Topic:
+            Depth: 5
+            Durability Policy: Volatile
+            History Policy: Keep Last
+            Reliability Policy: Reliable
+            Value: /cam_base/color/image
+          Value: false
+      Enabled: true
+      Name: Cameras
+    - Class: rviz_common/Group
+      Displays:
+        - Class: rviz_default_plugins/Image
+          Enabled: true
+          Max Value: 1000
+          Median window: 5
+          Min Value: 70
+          Name: LeftWristDepth
+          Normalize Range: true
+          Topic:
+            Depth: 5
+            Durability Policy: Volatile
+            History Policy: Keep Last
+            Reliability Policy: Reliable
+            Value: /cam_left/depth/image
+          Value: true
+        - Class: rviz_default_plugins/Image
+          Enabled: true
+          Max Value: 1000
+          Median window: 5
+          Min Value: 70
+          Name: RightWristDepth
+          Normalize Range: true
+          Topic:
+            Depth: 5
+            Durability Policy: Volatile
+            History Policy: Keep Last
+            Reliability Policy: Reliable
+            Value: /cam_right/depth/image
+          Value: true
+        - Class: rviz_default_plugins/Image
+          Enabled: true
+          Max Value: 4000
+          Median window: 5
+          Min Value: 250
+          Name: HeadDepth
+          Normalize Range: true
+          Topic:
+            Depth: 5
+            Durability Policy: Volatile
+            History Policy: Keep Last
+            Reliability Policy: Reliable
+            Value: /cam_head/depth/image
+          Value: true
+        - Class: rviz_default_plugins/Image
+          Enabled: true
+          Max Value: 4000
+          Median window: 5
+          Min Value: 250
+          Name: BaseDepth
+          Normalize Range: true
+          Topic:
+            Depth: 5
+            Durability Policy: Volatile
+            History Policy: Keep Last
+            Reliability Policy: Reliable
+            Value: /cam_base/depth/image
+          Value: true
+      Enabled: false
+      Name: DepthCameras
+  Enabled: true
+  Global Options:
+    Background Color: 48; 48; 48
+    Fixed Frame: base_link
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz_default_plugins/MoveCamera
+    - Class: rviz_default_plugins/Select
+    - Class: rviz_default_plugins/FocusCamera
+    - Class: rviz_default_plugins/Measure
+      Line color: 128; 128; 0
+  Transformation:
+    Current:
+      Class: rviz_default_plugins/TF
+  Value: true
+  Views:
+    Current:
+      Class: rviz_default_plugins/Orbit
+      Distance: 8.807572364807129
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.05999999865889549
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 0.5661719441413879
+        Y: 1.8635629415512085
+        Z: 1.4866173267364502
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.05000000074505806
+      Invert Z Axis: false
+      Name: Current View
+      Near Clip Distance: 0.009999999776482582
+      Pitch: 0.3097964823246002
+      Target Frame: <Fixed Frame>
+      Value: Orbit (rviz)
+      Yaw: 4.823184490203857
+    Saved: ~
+Window Geometry:
+  Base:
+    collapsed: false
+  BaseDepth:
+    collapsed: false
+  Displays:
+    collapsed: false
+  Head:
+    collapsed: false
+  HeadDepth:
+    collapsed: false
+  HeadJointSliderPanel:
+    collapsed: false
+  Height: 1416
+  Hide Left Dock: false
+  Hide Right Dock: false
+  JointSliderPanel:
+    collapsed: false
+  LeftWrist:
+    collapsed: false
+  LeftWristDepth:
+    collapsed: false
+  QMainWindow State: 000000ff00000000fd0000000200000000000001560000052efc020000000afb00000012004c00650066007400570072006900730074000000003d000001350000002800fffffffb0000001400520069006700680074005700720069007300740000000178000001290000002800fffffffb00000008004800650061006400000002a7000001390000002800fffffffb00000008004200610073006500000003e6000001850000002800fffffffb0000001c004c006500660074005700720069007300740044006500700074006800000001dd000000640000002800fffffffb0000001e0052006900670068007400570072006900730074004400650070007400680000000247000000610000002800fffffffb0000001200480065006100640044006500700074006800000002ae000000600000002800fffffffb000000120042006100730065004400650070007400680000000314000000640000002800fffffffb000000100044006900730070006c00610079007300000002c0000002ab000000c900fffffffb0000000a00560069006500770073000000027c000000a4000000a400ffffff000000010000017a0000052efc0200000002fb000000280048006500610064004a006f0069006e00740053006c006900640065007200500061006e0065006c010000003d000001af0000016500fffffffb00000020004a006f0069006e00740053006c006900640065007200500061006e0065006c01000001f2000003790000016800ffffff000002ea0000052e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  RightWrist:
+    collapsed: false
+  RightWristDepth:
+    collapsed: false
+  Views:
+    collapsed: false
+  Width: 1130
+  X: -50
+  Y: 342
