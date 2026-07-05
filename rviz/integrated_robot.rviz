@@ -12,6 +12,12 @@ Panels:
       - /Current View1
     Name: Views
     Splitter Ratio: 0.5
+  - Class: swerve_base_panel/SwerveBasePanel
+    Name: SwerveBasePanel
+    angular_speed_mradps: 200
+    cmd_vel_topic: /cmd_vel
+    linear_speed_mmps: 200
+    speed_scale_percent: 100
   - Class: openarmx_head_joint_slider_panel/HeadJointSliderPanel
     Name: HeadJointSliderPanel
     joint_step_mrad: 10
@@ -733,7 +739,7 @@ Visualization Manager:
             Depth: 5
             Durability Policy: Volatile
             History Policy: Keep Last
-            Reliability Policy: Reliable
+            Reliability Policy: Best Effort
             Value: /cam_left/color/image
           Value: false
         - Class: rviz_default_plugins/Image
@@ -747,7 +753,7 @@ Visualization Manager:
             Depth: 5
             Durability Policy: Volatile
             History Policy: Keep Last
-            Reliability Policy: Reliable
+            Reliability Policy: Best Effort
             Value: /cam_right/color/image
           Value: false
         - Class: rviz_default_plugins/Image
@@ -761,7 +767,7 @@ Visualization Manager:
             Depth: 5
             Durability Policy: Volatile
             History Policy: Keep Last
-            Reliability Policy: Reliable
+            Reliability Policy: Best Effort
             Value: /cam_head/color/image
           Value: false
         - Class: rviz_default_plugins/Image
@@ -775,7 +781,7 @@ Visualization Manager:
             Depth: 5
             Durability Policy: Volatile
             History Policy: Keep Last
-            Reliability Policy: Reliable
+            Reliability Policy: Best Effort
             Value: /cam_base/color/image
           Value: false
       Enabled: true
@@ -900,6 +906,8 @@ Window Geometry:
   LeftWrist:
     collapsed: false
   LeftWristDepth:
+    collapsed: false
+  SwerveBasePanel:
     collapsed: false
   QMainWindow State: 000000ff00000000fd0000000200000000000001560000052efc020000000afb00000012004c00650066007400570072006900730074000000003d000001350000002800fffffffb0000001400520069006700680074005700720069007300740000000178000001290000002800fffffffb00000008004800650061006400000002a7000001390000002800fffffffb00000008004200610073006500000003e6000001850000002800fffffffb0000001c004c006500660074005700720069007300740044006500700074006800000001dd000000640000002800fffffffb0000001e0052006900670068007400570072006900730074004400650070007400680000000247000000610000002800fffffffb0000001200480065006100640044006500700074006800000002ae000000600000002800fffffffb000000120042006100730065004400650070007400680000000314000000640000002800fffffffb000000100044006900730070006c00610079007300000002c0000002ab000000c900fffffffb0000000a00560069006500770073000000027c000000a4000000a400ffffff000000010000017a0000052efc0200000002fb000000280048006500610064004a006f0069006e00740053006c006900640065007200500061006e0065006c010000003d000001af0000016500fffffffb00000020004a006f0069006e00740053006c006900640065007200500061006e0065006c01000001f2000003790000016800ffffff000002ea0000052e00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   RightWrist:
