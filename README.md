@@ -62,20 +62,17 @@ base_link (chassis)
 
 ```bash
 # Build
-\nEnglish | [中文](./README-CN.md)
 
 ---
 cd ~/openflex_all/openflex_ws
 colcon build --packages-select openarmx_integrated_description
 
 # Visualize standalone
-\nEnglish | [中文](./README-CN.md)
 
 ---
 ros2 launch openarmx_integrated_description display.launch.py
 
 # Generate URDF
-\nEnglish | [中文](./README-CN.md)
 
 ---
 xacro $(ros2 pkg prefix openarmx_integrated_description)/share/openarmx_integrated_description/urdf/openarmx_integrated_robot.urdf.xacro

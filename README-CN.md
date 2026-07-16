@@ -62,20 +62,17 @@ base_link（底盘）
 
 ```bash
 # 编译
-\n[English](./README.md) | 中文
 
 ---
 cd ~/openflex_all/openflex_ws
 colcon build --packages-select openarmx_integrated_description
 
 # 独立可视化
-\n[English](./README.md) | 中文
 
 ---
 ros2 launch openarmx_integrated_description display.launch.py
 
 # 生成 URDF
-\n[English](./README.md) | 中文
 
 ---
 xacro $(ros2 pkg prefix openarmx_integrated_description)/share/openarmx_integrated_description/urdf/openarmx_integrated_robot.urdf.xacro

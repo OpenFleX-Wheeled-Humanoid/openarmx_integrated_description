@@ -726,6 +726,25 @@ Visualization Manager:
         Reliability Policy: Reliable
         Value: /scene_markers
       Value: true
+    - Class: openarmx_battery_monitor/BatteryOverlayDisplay
+      Name: BatteryOverlay
+      Enabled: true
+      Battery Topic:
+        Depth: 5
+        Durability Policy: Volatile
+        History Policy: Keep Last
+        Reliability Policy: Reliable
+        Value: /battery_state
+      Label: ""
+      Use Message Location: false
+      Hide When Offline: true
+      Margin X: 24
+      Margin Y: 20
+      Battery Width: 92
+      Battery Height: 36
+      Font Size: 16
+      Offline Timeout (s): 0.6
+      Value: true
     - Class: rviz_common/Group
       Displays:
         - Class: rviz_default_plugins/Image
