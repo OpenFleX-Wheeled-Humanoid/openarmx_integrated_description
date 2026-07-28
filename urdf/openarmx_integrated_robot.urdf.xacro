@@ -199,7 +199,7 @@
       <child link="head_pitch_link"/>
       <origin xyz="0.0001 0.0068 0.0395" rpy="0 0 0"/>
       <axis xyz="1 0 0"/>
-      <limit lower="-1.5708" upper="1.5708" velocity="33.0" effort="14.0"/>
+      <limit lower="-1.086" upper="0.403" velocity="33.0" effort="14.0"/>
     </joint>
 
     <!-- Head yaw link (随上部电机旋转：头部外壳+钣金+摄像头) -->
