@@ -19,6 +19,8 @@
   <exec_depend>lift_slide_description</exec_depend>
   <exec_depend>openarmx_description</exec_depend>
   <exec_depend>openarmx_battery_monitor</exec_depend>
+  <exec_depend>openarmx_joint_slider_panel</exec_depend>
+  <exec_depend>openarmx_ik_control_panel</exec_depend>
 
   <export>
     <build_type>ament_cmake</build_type>
