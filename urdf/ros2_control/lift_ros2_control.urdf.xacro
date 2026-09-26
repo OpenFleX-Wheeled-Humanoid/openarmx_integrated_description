@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- ============================================
+       Lift Mechanism ros2_control Configuration
+
+       NOTE: This is a placeholder configuration.
+       The actual hardware interface (LiftHardwareInterface)
+       needs to be implemented in the lift_hardware package.
+
+       For now, this defines the interface structure
+       that will be needed once the hardware is ready.
+       ============================================ -->
+
+  <xacro:macro name="lift_ros2_control" params="can_interface:='can3' use_fake_hardware:=false">
+
+    <ros2_control name="lift_hardware_interface" type="system">
+      <hardware>
+        <xacro:if value="${use_fake_hardware}">
+          <plugin>mock_components/GenericSystem</plugin>
+          <param name="mock_sensor_commands">false</param>
+        </xacro:if>
+        <xacro:unless value="${use_fake_hardware}">
+          <!-- TODO: Implement lift_hardware/LiftHardwareInterface -->
+          <plugin>lift_hardware/LiftHardwareInterface</plugin>
+          <param name="can_interface">${can_interface}</param>
+          <!-- Motor IDs for the 3 lift motors (to be configured based on actual setup) -->
+          <param name="left_motor_id">13</param>
+          <param name="right_motor_id">14</param>
+          <param name="main_motor_id">15</param>
+        </xacro:unless>
+      </hardware>
+
+      <!-- Prismatic joint for vertical lifting -->
+      <joint name="plate_joint">
+        <command_interface name="position">
+          <param name="min">0.0</param>
+          <param name="max">0.5</param>
+        </command_interface>
+        <state_interface name="position">
+          <param name="initial_value">0.0</param>
+        </state_interface>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <!-- Left lift motor joint (for synchronized control) -->
+      <joint name="left_joint0_base">
+        <command_interface name="position"/>
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <!-- Right lift motor joint (for synchronized control) -->
+      <joint name="right_joint0_base">
+        <command_interface name="position"/>
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+    </ros2_control>
+
+  </xacro:macro>
+
+</robot>
